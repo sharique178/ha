@@ -3,101 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Client Login | HackZone</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      color: #00ffe5;
-      text-shadow: 0 0 8px #00ffe5;
-    }
-
-    form {
-      background-color: #1e1e1e;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 255, 229, 0.3);
-      width: 300px;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #2a2a2a;
-      color: white;
-    }
-
-    input:focus {
-      outline: 2px solid #00ffe5;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #00ffe5;
-      border: none;
-      border-radius: 6px;
-      color: #121212;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 10px #00ffe5;
-    }
-
-    button:hover {
-      background-color: #00ccba;
-      box-shadow: 0 0 15px #00ffe5;
-    }
-
-    .message {
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .back-link {
-      margin-top: 20px;
-      color: #00ffe5;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>Client Login - HackZone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Client Login</h1>
+  <div class="container">
+    <h1>Client Login</h1>
 
-  <form id="login-form">
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-    <div class="message" id="login-message"></div>
-  </form>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
 
-  <a class="back-link" href="index.html">← Back to Home</a>
+    <div id="login-message" class="message"></div>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
 
   <script type="module">
-    import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js';
 
+    // ✅ Replace with your own Supabase project URL and anon key
     const supabase = createClient(
       'https://qynwawbyrlduqtkvzzsh.supabase.co',
-      'YOUR_PUBLIC_ANON_KEY' // Replace this with your actual public anon key
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5bndhd2J5cmxkdXF0a3Z6enNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMzg3NjgsImV4cCI6MjA2NjYxNDc2OH0.Y4gCRf3vWSXw1AXu12jMk8Fwc2YLWDQsbEcVN10kOLI'
     );
 
     const loginForm = document.getElementById("login-form");
@@ -105,6 +35,7 @@
 
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
@@ -117,7 +48,7 @@
         messageDiv.style.color = "lightgreen";
         messageDiv.textContent = "Login successful! Redirecting...";
         setTimeout(() => {
-          window.location.href = "dashboard.html"; // You can change this to your real dashboard
+          window.location.href = "dashboard.html"; // Your client dashboard
         }, 1500);
       }
     });
