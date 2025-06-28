@@ -1,59 +1,107 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #f4f4f4;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-nav {
-  background-color: #111;
+.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.light-mode {
+  background-color: #f4f4f4;
+  color: #1c1c1c;
+}
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  color: white;
+  background: #000;
+  color: #fff;
+  padding: 15px 30px;
 }
 
-nav .logo {
-  font-size: 1.5rem;
+.navbar nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #fff;
   font-weight: bold;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
+#toggleMode {
+  background: gold;
+  border: none;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.hero {
+.main-content {
   text-align: center;
-  padding: 4rem 2rem;
-  background-color: #fff;
+  padding: 60px 20px;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero .btn {
+.btn-glow {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #111;
+  margin-top: 30px;
+  padding: 15px 30px;
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+  border: none;
   color: white;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
   text-decoration: none;
-  border-radius: 5px;
+  box-shadow: 0 0 10px #4facfe, 0 0 20px #00f2fe;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-glow:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #4facfe, 0 0 30px #00f2fe;
 }
 
 footer {
-  background-color: #111;
-  color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 20px;
+  color: gray;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 400px;
+  margin: 30px auto;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 16px;
+}
+
+.login-form input::placeholder {
+  color: #aaa;
+}
+
+.login-form button {
+  width: 100%;
+}
+.login-form textarea,
+.login-form select {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #1e1e1e;
+  color: #fff;
+  font-size: 16px;
 }
