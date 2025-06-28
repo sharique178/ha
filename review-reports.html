@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Review Bug Reports</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Review Bug Reports – HackZone</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
-  <h1>Bug Reports</h1>
+  <h2>Company Bug Report Review</h2>
+  <div id="report-list">Loading...</div>
 
-  <section>
-    <h2>Client: sajjad@example.com</h2>
-    <p><strong>Title:</strong> SQL Injection in login form</p>
-    <p><strong>Description:</strong> Login bypass with `' OR '1'='1`</p>
-    <p><strong>Steps:</strong> Enter `' OR '1'='1` in username field.</p>
-    <button>Pay ₹1000</button>
-  </section>
+  <script>
+    const supabase = supabase.createClient(
+      "https://qynwawbyrlduqtkvzzsh.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5bndhd2J5cmxkdXF0a3Z6enNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMzg3NjgsImV4cCI6MjA2NjYxNDc2OH0.Y4gCRf3vWSXw1AXu12jMk8Fwc2YLWDQsbEcVN10kOLI"
+    );
 
+    async function loadReports() {
+      const { data, error } = await supabase
+        .from("reports")
+        .select("*")
+        .order("id", { ascending: false });
+
+      const container = document.getElementById("report-list");
+      if (error) {
+        container.innerText = "❌ Failed to load reports: " + error.message;
+        return;
+      }
+
+      if (data.length === 0) {
+        container.innerText = "No reports submitted yet.";
+        return;
+      }
+
+      container.innerHTML = data.map(report => `
+        <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+          <strong>From:</strong> ${report.user_email}<br>
+          <strong>Title:</strong> ${report.title}<br>
+          <strong>Description:</strong><br>${report.description}<br>
+          <strong>Status:</strong> ${report.status}
+        </div>
+      `).join("");
+    }
+
+    loadReports();
+  </script>
 </body>
 </html>
+
