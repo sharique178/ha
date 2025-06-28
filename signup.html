@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup - HackZone</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Sign Up</h2>
+  <input type="email" id="signup-email" placeholder="Email" />
+  <input type="password" id="signup-password" placeholder="Password" />
+  <button onclick="signUp()">Sign Up</button>
+
+  <p>Already have an account? <a href="login.html">Login</a></p>
+
+  <script>
+    const supabase = supabase.createClient("https://YOUR_PROJECT_ID.supabase.co", "YOUR_PUBLIC_ANON_KEY");
+
+    async function signUp() {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      const { user, error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("Signup successful! Check your email to verify.");
+      }
+    }
+  </script>
+</body>
+</html>
