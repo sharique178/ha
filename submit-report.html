@@ -1,58 +1,47 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Submit Report – HackZone</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Bug Report | HackZone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h2>Submit Bug Report</h2>
-  <form id="reportForm">
-    <input type="text" id="title" placeholder="Bug Title" required><br><br>
-    <textarea id="description" placeholder="Describe the bug..." required></textarea><br><br>
-    <button type="submit">Submit Report</button>
-  </form>
+<body class="dark-mode">
+  <header>
+    <div class="navbar">
+      <h1>HackZone</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login-client.html">Client Login</a>
+        <a href="login-company.html">Company Login</a>
+      </nav>
+      <button id="toggleMode">🌙</button>
+    </div>
+  </header>
 
-  <p id="message"></p>
+  <main class="main-content">
+    <h2>Submit a Bug Report</h2>
+    <form action="#" method="POST" class="login-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <input type="text" placeholder="Company Name" required />
+      <input type="text" placeholder="Bug Title" required />
+      <textarea placeholder="Describe the bug in detail..." rows="6" required></textarea>
+      <button type="submit" class="btn-glow">Submit Report</button>
+    </form>
+    <p>Thanks for helping make the web safer! 💻🔐</p>
+  </main>
+
+  <footer>
+    <p>© 2025 HackZone | Built by Mohammad Sharique Khan</p>
+  </footer>
 
   <script>
-    const supabase = supabase.createClient(
-      "https://qynwawbyrlduqtkvzzsh.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5bndhd2J5cmxkdXF0a3Z6enNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMzg3NjgsImV4cCI6MjA2NjYxNDc2OH0.Y4gCRf3vWSXw1AXu12jMk8Fwc2YLWDQsbEcVN10kOLI"
-    );
-
-    async function getUserEmail() {
-      const { data: { user } } = await supabase.auth.getUser();
-      return user?.email || null;
-    }
-
-    document.getElementById('reportForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const email = await getUserEmail();
-      if (!email) {
-        document.getElementById('message').innerText = "❌ You must be logged in to submit.";
-        return;
-      }
-
-      const title = document.getElementById('title').value;
-      const description = document.getElementById('description').value;
-
-      const { error } = await supabase.from("reports").insert([
-        {
-          user_email: email,
-          title: title,
-          description: description,
-          status: "pending"
-        }
-      ]);
-
-      if (error) {
-        document.getElementById('message').innerText = "❌ " + error.message;
-      } else {
-        document.getElementById('message').innerText = "✅ Report submitted successfully!";
-        document.getElementById("reportForm").reset();
-      }
+    const toggleBtn = document.getElementById("toggleMode");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
     });
   </script>
 </body>
