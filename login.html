@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - HackZone</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="email" id="login-email" placeholder="Email" />
+  <input type="password" id="login-password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+
+  <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+  <script>
+    const supabase = supabase.createClient("https://YOUR_PROJECT_ID.supabase.co", "YOUR_PUBLIC_ANON_KEY");
+
+    async function login() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      const { session, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        alert("Login failed: " + error.message);
+      } else {
+        alert("Login successful!");
+        // redirect to homepage or dashboard
+        window.location.href = "dashboard.html";
+      }
+    }
+  </script>
+</body>
+</html>
