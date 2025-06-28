@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard – HackZone</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Welcome to your Dashboard</h2>
+  <p id="user-email">Loading user...</p>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    const supabase = supabase.createClient(
+      "https://qynwawbyrlduqtkvzzsh.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5bndhd2J5cmxkdXF0a3Z6enNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMzg3NjgsImV4cCI6MjA2NjYxNDc2OH0.Y4gCRf3vWSXw1AXu12jMk8Fwc2YLWDQsbEcVN10kOLI"
+    );
+
+    async function checkUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        window.location.href = "login.html"; // not logged in
+      } else {
+        document.getElementById("user-email").innerText = `Logged in as: ${user.email}`;
+      }
+    }
+
+    async function logout() {
+      await supabase.auth.signOut();
+      window.location.href = "login.html";
+    }
+
+    checkUser();
+  </script>
+</body>
+</html>
