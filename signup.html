@@ -2,31 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Signup - HackZone</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup | HackZone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h2>Sign Up</h2>
-  <input type="email" id="signup-email" placeholder="Email" />
-  <input type="password" id="signup-password" placeholder="Password" />
-  <button onclick="signUp()">Sign Up</button>
+<body class="dark-mode">
+  <header>
+    <div class="navbar">
+      <h1>HackZone</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login-client.html">Client Login</a>
+        <a href="login-company.html">Company Login</a>
+      </nav>
+      <button id="toggleMode">🌙</button>
+    </div>
+  </header>
 
-  <p>Already have an account? <a href="login.html">Login</a></p>
+  <main class="main-content">
+    <h2>Create an Account</h2>
+    <form action="#" method="POST" class="login-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <select required>
+        <option value="">Select Role</option>
+        <option value="client">Client</option>
+        <option value="company">Company</option>
+      </select>
+      <button type="submit" class="btn-glow">Signup</button>
+    </form>
+    <p>Already have an account? <a href="login-client.html">Login here</a></p>
+  </main>
+
+  <footer>
+    <p>© 2025 HackZone | Built by Mohammad Sharique Khan</p>
+  </footer>
 
   <script>
-    const supabase = supabase.createClient("https://YOUR_PROJECT_ID.supabase.co", "YOUR_PUBLIC_ANON_KEY");
-
-    async function signUp() {
-      const email = document.getElementById("signup-email").value;
-      const password = document.getElementById("signup-password").value;
-
-      const { user, error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        alert("Error: " + error.message);
-      } else {
-        alert("Signup successful! Check your email to verify.");
-      }
-    }
+    const toggleBtn = document.getElementById("toggleMode");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+    });
   </script>
 </body>
 </html>
