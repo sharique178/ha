@@ -1,26 +1,41 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thank You - HackZone</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | HackZone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
+<body class="dark-mode">
   <header>
-    <h1>HackZone</h1>
+    <div class="navbar">
+      <h1>HackZone</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login-client.html">Client Login</a>
+        <a href="login-company.html">Company Login</a>
+      </nav>
+      <button id="toggleMode">🌙</button>
+    </div>
   </header>
 
-  <main>
-    <h2>Thank You!</h2>
-    <p>Your bug report has been submitted successfully.</p>
-    <p>We’ll review it and get back to you soon.</p>
-    <a href="lk.htm" class="btn">Back to Home</a>
+  <main class="main-content">
+    <h2>✅ Report Submitted!</h2>
+    <p>Thank you for helping secure the web. Our team will review your report soon.</p>
+    <a href="index.html" class="btn-glow">Go to Homepage</a>
   </main>
 
   <footer>
-    <p>&copy; 2025 HackZone. All rights reserved.</p>
+    <p>© 2025 HackZone | Built by Mohammad Sharique Khan</p>
   </footer>
 
+  <script>
+    const toggleBtn = document.getElementById("toggleMode");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+    });
+  </script>
 </body>
 </html>
