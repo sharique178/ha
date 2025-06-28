@@ -1,107 +1,79 @@
+/* Global Styles */
 body {
-  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.dark-mode {
   background-color: #121212;
   color: #f0f0f0;
-}
-
-.light-mode {
-  background-color: #f4f4f4;
-  color: #1c1c1c;
-}
-
-.navbar {
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: #000;
-  color: #fff;
-  padding: 15px 30px;
+  height: 100vh;
 }
 
-.navbar nav a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-}
-
-#toggleMode {
-  background: gold;
-  border: none;
-  font-size: 18px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.main-content {
+.container {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 400px;
   text-align: center;
-  padding: 60px 20px;
 }
 
-.btn-glow {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 15px 30px;
-  background: linear-gradient(to right, #00f2fe, #4facfe);
-  border: none;
-  color: white;
-  font-size: 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 0 10px #4facfe, 0 0 20px #00f2fe;
-  transition: transform 0.3s, box-shadow 0.3s;
+h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-.btn-glow:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #4facfe, 0 0 30px #00f2fe;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: gray;
-}
-.login-form {
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 15px;
-  max-width: 400px;
-  margin: 30px auto;
 }
 
-.login-form input {
-  width: 100%;
+input[type="email"],
+input[type="password"] {
   padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #2c2c2c;
   color: #fff;
   font-size: 16px;
 }
 
-.login-form input::placeholder {
+input::placeholder {
   color: #aaa;
 }
 
-.login-form button {
-  width: 100%;
-}
-.login-form textarea,
-.login-form select {
-  width: 100%;
+button {
   padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #1e1e1e;
-  color: #fff;
+  background-color: #00b894;
+  color: white;
   font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #019875;
+}
+
+.message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  color: #74b9ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
