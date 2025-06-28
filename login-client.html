@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Client Login - HackZone</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Login | HackZone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="dark-mode">
   <header>
-    <h1>Client Login</h1>
+    <div class="navbar">
+      <h1>HackZone</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login-company.html">Company Login</a>
+        <a href="signup.html">Signup</a>
+      </nav>
+      <button id="toggleMode">🌙</button>
+    </div>
   </header>
 
-  <main>
-    <form action="#">
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
-
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password" required><br><br>
-
-      <button type="submit" class="btn">Login</button>
+  <main class="main-content">
+    <h2>Client Login</h2>
+    <form action="#" method="POST" class="login-form">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit" class="btn-glow">Login</button>
     </form>
-    <p><a href="lk.htm">← Back to Home</a></p>
+    <p>Don't have an account? <a href="signup.html">Signup here</a></p>
   </main>
 
   <footer>
-    <p>&copy; 2025 HackZone. All rights reserved.</p>
+    <p>© 2025 HackZone | Built by Mohammad Sharique Khan</p>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("toggleMode");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+    });
+  </script>
 </body>
 </html>
